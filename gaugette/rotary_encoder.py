@@ -132,8 +132,10 @@ class RotaryEncoder:
     def start(self):
         def isr():
             self.update()
-        self.gpio.trigger(self.a_pin, self.gpio.EDGE_BOTH, isr)
-        self.gpio.trigger(self.b_pin, self.gpio.EDGE_BOTH, isr)
+        #self.gpio.trigger(self.a_pin, self.gpio.EDGE_BOTH, isr)
+        #self.gpio.trigger(self.b_pin, self.gpio.EDGE_BOTH, isr)
+        self.gpio.add_event_detect(self.pin_a, self.gpio.BOTH, callback=isr)
+        self.gpio.add_event_detect(self.pin_b, self.gpio.BOTH, callback=isr) 
 
     class Worker(threading.Thread):
         def __init__(self, gpio, a_pin, b_pin):
