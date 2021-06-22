@@ -130,7 +130,8 @@ class RotaryEncoder:
         return cycles
 
     def start(self):
-        def isr():
+        def isr(channel):
+            _ = channel
             self.update()
         #self.gpio.trigger(self.a_pin, self.gpio.EDGE_BOTH, isr)
         #self.gpio.trigger(self.b_pin, self.gpio.EDGE_BOTH, isr)
